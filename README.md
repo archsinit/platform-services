@@ -1,5 +1,5 @@
 # platform-services
 Docker Compose configurations for containerized services
 
-Overview
+# Overview
 This repository contains Docker Compose stacks for deploying and managing containerized services.
