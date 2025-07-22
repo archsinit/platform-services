@@ -90,7 +90,7 @@ services:
       - PGID=1000
     volumes:
       - /home/archsinit/data/consume:/var/syncthing/paperless-consume
-      - ./syncthing:/var/syncthing/config
+      - /home/archsinit/syncthing:/var/syncthing/config
     ports:
       - "8384:8384"    # Web UI
       - "22000:22000/tcp"  # File transfers
