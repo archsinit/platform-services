@@ -34,16 +34,16 @@ services:
     image: docker.io/library/redis:8
     restart: unless-stopped
     volumes:
-      - /home/archsinit/data/redisdata:/data
+      - redisdata:/data
   db:
     image: docker.io/library/postgres:17
     restart: unless-stopped
     volumes:
-      - /home/archsinit/data/pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: paperless
-      POSTGRES_USER: paperless
-      POSTGRES_PASSWORD: paperless
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
@@ -55,8 +55,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - /home/archsinit/data/data:/usr/src/paperless/data
-      - /home/archsinit/data/media:/usr/src/paperless/media
+      - data:/usr/src/paperless/data
+      - media:/usr/src/paperless/media
       - /home/archsinit/data/export:/usr/src/paperless/export
       - /home/archsinit/data/consume:/usr/src/paperless/consume
     environment:
@@ -65,8 +65,8 @@ services:
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
-      PAPERLESS_DBUSER: paperless
-      PAPERLESS_DBPASS: paperless
+      PAPERLESS_DBUSER: ${POSTGRES_USER}
+      PAPERLESS_DBPASS: ${POSTGRES_PASSWORD}
   gotenberg:
     image: docker.io/gotenberg/gotenberg:8.20
     restart: unless-stopped
