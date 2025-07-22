@@ -103,4 +103,4 @@ volumes:
   media:
   pgdata:
   redisdata:
-  syncthing_config
+  syncthing_config:
