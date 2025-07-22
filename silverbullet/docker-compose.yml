@@ -1,0 +1,10 @@
+services:
+  silverbullet:
+    image: ghcr.io/silverbulletmd/silverbullet:v2
+    restart: unless-stopped
+    environment:
+    - SB_USER=admin:${SB_PASSWORD}
+    volumes:
+      - /home/archsinit/space:/space
+    ports:
+      - 3000:3000
