@@ -79,3 +79,9 @@ services:
   tika:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
+
+volumes:
+  data:
+  media:
+  pgdata:
+  redisdata:
